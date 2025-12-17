@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="it" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>DÓJA | Institutional Art & Finance</title>
+    <meta name="description" content="DÓJA Institutional Art & Finance - Private Terminal.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚜️</text></svg>">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#050607',
+                        card: '#0F1113',
+                        gold: '#EF9B0F',
+                        jade: '#2D5A4C',
+                        terracotta: '#B35A44',
+                        graphite: '#1E2124',
+                        lightBg: '#F4F4F5',
+                        lightCard: '#FFFFFF'
+                    },
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* FIX SCROLL: Assicura che il body sia sempre scorrevole tranne quando il menu è APERTO */
+        html, body {
+            overflow-x: hidden;
+            height: auto;
+            min-height: 100%;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050607; }
+        ::-webkit-scrollbar-thumb { background: #1E2124; border-radius: 10px; }
+
+        .dark .glass-nav {
+            background: rgba(5, 6, 7, 0.8);
+            backdrop-filter: blur(12px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .dark .glass-card {
+            background: rgba(15, 17, 19, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .light .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px) saturate(180%);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            color: #18181b;
+        }
+        .light .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+            color: #18181b;
+        }
+        .light body { background-color: #F4F4F5; color: #18181b; }
+
+        .glass-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .glass-card:hover {
+            border-color: rgba(197, 163, 103, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .img-slot {
+            background: linear-gradient(90deg, #0F1113 25%, #1A1D20 50%, #0F1113 75%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        .light .img-slot {
+            background: linear-gradient(90deg, #E4E4E7 25%, #F4F4F5 50%, #E4E4E7 75%);
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        #mobile-menu {
+            transition: all 0.5s cubic-bezier(0.85, 0, 0.15, 3);
+            clip-path: circle(0% at 0% 0%);
+        }
+        #mobile-menu.open { clip-path: circle(150% at 0% 0%); }
+
+        .page { display: none; }
+        .page.active { display: block; animation: fadeIn 0.6s ease-out forwards; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-obsidian text-zinc-100 font-sans antialiased transition-colors duration-500">
+        
+    <div id="cookie-banner" class="fixed bottom-6 left-6 right-6 lg:left-auto lg:w-96 z-[6000] glass-card p-6 rounded-[2rem] border-gold/20 shadow-2xl hidden">
+        <p id="cookie-text" data-i18n="cookieText" class="text-xs text-zinc-300 leading-relaxed mb-4">
+    Usiamo cookie tecnici per ottimizzare la tua esperienza nel terminale DÓJA...
+        </p>
+        <button onclick="acceptCookies()" data-i18n="cookieBtn" class="w-full bg-gold text-obsidian font-black py-3 rounded-xl text-[10px] uppercase tracking-[0.2em]">
+            Accetta Protocollo
+        </button>
+    </div>
+    
+    <div id="login-screen" class="fixed inset-0 z-[5000] bg-obsidian flex flex-col items-center justify-start overflow-y-auto transition-opacity duration-500">
+        <div class="w-full h-[25vh] min-h-[180px] pt-20 mt-10 flex flex-col items-center justify-center p-6 text-center select-none">
+            <h1 class="text-5xl md:text-6xl font-black tracking-[0.4em] text-gold drop-shadow-[0_0_20px_rgba(197,163,103,0.15)]">
+                DÓJA
+            </h1>
+            <h5 class="mt-4 text-[12px] font-medium text-zinc-600 uppercase tracking-[0.6em] max-w-[280px] leading-relaxed">
+                The Intersection of Art & Capital
+            </h5>
+            <div class="mt-6 w-8 h-[1px] bg-gold/30"></div>
+        </div>
+
+        <div class="w-full max-w-md px-6 space-y-8">
+            <div class="glass-card p-8 rounded-[2.5rem] space-y-6">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-[10px] font-black text-zinc-500 uppercase tracking-[0.2em] mb-2 ml-1">Terminal ID</label>
+                        <input type="text" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-2xl p-4 outline-none focus:border-gold transition-colors text-white" placeholder="ADMIN">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-black text-zinc-500 uppercase tracking-[0.2em] mb-2 ml-1">Security Key</label>
+                        <input type="password" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-2xl p-4 outline-none focus:border-gold transition-colors text-white" placeholder="1234">
+                    </div>
+                </div>
+                <button onclick="auth()" class="w-full bg-gold hover:bg-gold/90 text-obsidian font-black p-5 rounded-2xl transition-all transform active:scale-95 uppercase tracking-widest text-xs shadow-xl shadow-gold/10" data-i18n="initSession">
+                    Initialize Session
+                </button>
+            </div>
+            <p class="text-center text-[10px] text-zinc-600 font-bold uppercase tracking-[0.3em]" data-i18n="encryptedPoint">Encrypted Access Point</p>
+        </div>
+    </div>
+
+    <div id="app-root" class="hidden">
+        <nav class="glass-nav fixed top-0 w-full z-[1000] px-6 py-5">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <div class="flex items-center gap-6">
+                    <button onclick="toggleMenu()" class="p-2 text-gold hover:bg-gold/10 rounded-xl transition-colors lg:hidden">
+                        <i data-lucide="menu"></i>
+                    </button>
+                    <span class="text-xl font-black tracking-[0.3em] text-gold">DÓJA</span>
+                </div>
+                
+                <div class="hidden lg:flex items-center gap-10">
+                    <button onclick="showPage('dashboard')" class="text-[11px] font-black tracking-widest hover:text-gold transition-colors uppercase" data-i18n="navDashboard">Dashboard</button>
+                    <button onclick="showPage('portfolio')" class="text-[11px] font-black tracking-widest hover:text-gold transition-colors uppercase" data-i18n="navPortfolio">Portfolio</button>
+                    <button onclick="showPage('settings')" class="text-[11px] font-black tracking-widest hover:text-gold transition-colors uppercase" data-i18n="navSettings">Settings</button>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full img-slot border border-white/10 flex items-center justify-center overflow-hidden relative">
+                        <i data-lucide="user" class="w-4 h-4 text-gold relative z-10"></i>
+                    </div> 
+                </div>
+            </div>
+        </nav>
+
+        <div id="mobile-menu" class="fixed inset-0 z-[999] lg:hidden flex flex-col p-8 pt-32 bg-lightBg dark:bg-obsidian text-zinc-900 dark:text-zinc-100 transition-colors duration-500">
+            <div class="space-y-8 text-left">
+                <button onclick="showPage('dashboard')" class="block text-5xl font-black hover:text-gold italic tracking-tighter" data-i18n="navDashboard">Dashboard</button>
+                <button onclick="showPage('portfolio')" class="block text-5xl font-black hover:text-gold italic tracking-tighter" data-i18n="navPortfolio">Portfolio</button>
+                <button onclick="showPage('settings')" class="block text-5xl font-black hover:text-gold italic tracking-tighter" data-i18n="navSettings">Settings</button>
+                <div class="pt-12 border-t border-zinc-200 dark:border-zinc-900 mt-12">
+                    <button onclick="logout()" class="text-terracotta font-black text-xs uppercase tracking-widest" data-i18n="terminate">Terminate Session</button>
+                </div>
+            </div>
+        </div>
+
+        <main class="pt-32 px-6 pb-12 max-w-7xl mx-auto">
+            
+            <section id="page-dashboard" class="page active space-y-12">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2 glass-card rounded-[3rem] p-10 flex flex-col justify-between min-h-[300px] relative overflow-hidden">
+                        <div class="absolute bottom-6 right-6 opacity-10 pointer-events-none">
+                            <i data-lucide="trending-up" class="w-20 h-20 lg:w-32 lg:h-32 text-gold"></i>
+                        </div>
+                        <div class="relative z-10">
+                            <p class="text-zinc-500 text-xs font-black uppercase tracking-[0.3em] mb-4" data-i18n="netWorth">Total Net Worth</p>
+                            <h2 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tighter italic break-words">
+                                <span class="currency-symbol">€</span> <span data-val="2409500">2.409.500</span><span class="text-gold opacity-50">.00</span>
+                            </h2>
+                        </div>
+                        <div class="mt-8 flex items-center gap-4 relative z-10">
+                            <span class="bg-jade/20 text-jade px-4 py-2 rounded-2xl text-[11px] font-black border border-jade/20 tracking-widest uppercase">+12.4% APR</span>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card rounded-[3rem] p-10 flex flex-col justify-between">
+                        <h3 class="font-black text-[11px] uppercase tracking-widest text-zinc-500" data-i18n="marketFeed">Market Feed</h3>
+                        <div class="h-32 img-slot rounded-2xl my-4 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0" class="absolute inset-0 w-full h-full object-cover opacity-80 hover:scale-110 transition-all duration-700">
+                        </div>
+                        <button class="w-full bg-gold text-obsidian font-black p-5 rounded-2xl transition-all uppercase text-[11px] tracking-widest" data-i18n="newOrder">New Order</button>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="text-xs font-black uppercase tracking-[0.4em] text-zinc-500 px-2" data-i18n="recentAcq">Recent Acquisitions</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                        <div class="glass-card rounded-[2rem] p-4 flex items-center gap-4 group cursor-pointer">
+                            <div class="w-16 h-16 rounded-2xl overflow-hidden shrink-0 img-slot">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1200px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-gold text-[12px] font-black uppercase tracking-widest truncate">Van Gogh</p>
+                                <h4 class="font-bold text[18px] truncate italic">Notte Stellata</h4>
+                                <p class="text-xs font-black mt-1"><span class="currency-symbol">€</span> <span data-val="45000">45.000</span></p>
+                            </div>
+                        </div>
+                        <div class="glass-card rounded-[2rem] p-4 flex items-center gap-4 group cursor-pointer">
+                            <div class="w-16 h-16 rounded-2xl overflow-hidden shrink-0 img-slot">
+                                <img src="https://wahooart.com/media/artworks/images/full/24/47/2447e18405b84db99fcf4c89b65e0555.Jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-gold text-[12px] font-black uppercase tracking-widest truncate">Salvador Dali'</p>
+                                <h4 class="font-bold text[18px] truncate italic">S. Antonio</h4>
+                                <p class="text-xs font-black mt-1"><span class="currency-symbol">€</span> <span data-val="128000">128.000</span></p>
+                            </div>
+                        </div>
+                        <div class="glass-card rounded-[2rem] p-4 flex items-center gap-4 group cursor-pointer">
+                            <div class="w-16 h-16 rounded-2xl overflow-hidden shrink-0 img-slot">
+                                <img src="https://gallery.artsupp.com/partners_artworks_pictures/full/3761.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-gold text-[12px] font-black uppercase tracking-widest truncate">A. Ligabue</p>
+                                <h3 class="font-bold text-[18px] truncate italic">Tigre</h4>
+                                <p class="text-xs font-black mt-1"><span class="currency-symbol">€</span> <span data-val="890000">890.000</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="glass-card rounded-[3rem] p-8 flex items-center gap-6">
+                        <div class="w-16 h-16 rounded-2xl bg-gold/10 flex items-center justify-center text-gold shrink-0"><i data-lucide="activity"></i></div>
+                        <div>
+                            <p class="text-zinc-500 text-[10px] font-black uppercase tracking-widest">System Status</p>
+                            <h4 class="text-lg md:text-xl font-bold uppercase">All Nodes Operational</h4>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-[3rem] p-8 flex items-center gap-6">
+                        <div class="w-16 h-16 rounded-2xl bg-jade/10 flex items-center justify-center text-jade shrink-0"><i data-lucide="clock"></i></div>
+                        <div>
+                            <p class="text-zinc-500 text-[10px] font-black uppercase tracking-widest">Next Settlement</p>
+                            <h4 class="text-lg md:text-xl font-bold uppercase">14:00 GMT</h4>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="page-portfolio" class="page space-y-10">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end px-2 gap-4">
+                    <h2 class="text-5xl font-black tracking-tighter italic" data-i18n="collection">The Collection</h2>
+                    <p class="text-gold font-black text-[11px] tracking-widest uppercase" data-i18n="assetsCount">3 Assets Total</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="glass-card rounded-[3rem] overflow-hidden group">
+                        <div class="aspect-[4/5] img-slot relative">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1200px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        </div>
+                        <div class="p-8">
+                            <span class="text-gold text-[9px] font-black tracking-[0.3em] uppercase">Vincent Van Gogh</span>
+                            <h4 class="font-black text-2xl mt-1 italic tracking-tight">La notte stellata</h4>
+                            <div class="mt-8 flex justify-between items-end">
+                                <div><p class="text-[10px] text-zinc-500 uppercase font-black" data-i18n="valuation">Valuation</p>
+                                <p class="text-xl font-black"><span class="currency-symbol">€</span> <span data-val="45000">45.000</span></p></div>
+                                <i data-lucide="shield-check" class="text-jade w-6 h-6"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-[3rem] overflow-hidden group">
+                        <div class="aspect-[4/5] img-slot relative">
+                            <img src="https://wahooart.com/media/artworks/images/full/24/47/2447e18405b84db99fcf4c89b65e0555.Jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        </div>
+                        <div class="p-8">
+                            <span class="text-gold text-[9px] font-black tracking-[0.3em] uppercase">Salvador Dali'</span>
+                            <h4 class="font-black text-2xl mt-1 italic tracking-tight">La tentazione di Sant'Antonio</h4>
+                            <div class="mt-8 flex justify-between items-end">
+                                <div><p class="text-[10px] text-zinc-500 uppercase font-black" data-i18n="valuation">Valuation</p>
+                                <p class="text-xl font-black"><span class="currency-symbol">€</span> <span data-val="128000">128.000</span></p></div>
+                                <i data-lucide="shield-check" class="text-jade w-6 h-6"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-[3rem] overflow-hidden group">
+                        <div class="aspect-[4/5] img-slot relative">
+                            <img src="https://gallery.artsupp.com/partners_artworks_pictures/full/3761.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        </div>
+                        <div class="p-8">
+                            <span class="text-gold text-[9px] font-black tracking-[0.3em] uppercase">Antonio Ligabue</span>
+                            <h4 class="font-black text-2xl mt-1 italic tracking-tight">Tigre</h4>
+                            <div class="mt-8 flex justify-between items-end">
+                                <div><p class="text-[10px] text-zinc-500 uppercase font-black" data-i18n="valuation">Valuation</p>
+                                <p class="text-xl font-black"><span class="currency-symbol">€</span> <span data-val="890000">890.000</span></p></div>
+                                <i data-lucide="shield-check" class="text-jade w-6 h-6"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="page-settings" class="page max-w-2xl mx-auto">
+                <div class="glass-card rounded-[3rem] p-10 space-y-10">
+                    <h2 class="text-4xl font-black tracking-tighter italic" data-i18n="terminalConfig">Terminal Config</h2>
+                    
+                    <div class="space-y-6">
+                        <div onclick="toggleTheme()" class="flex items-center justify-between group cursor-pointer p-4 hover:bg-white/5 rounded-2xl transition-all">
+                            <div>
+                                <p class="font-black text-lg" data-i18n="themeTitle">Interface Theme</p>
+                                <p class="text-xs text-zinc-500" data-i18n="themeSub">Switch between Light and Dark</p>
+                            </div>
+                            <div id="theme-icon-container" class="text-gold">
+                                <i data-lucide="moon" id="theme-icon"></i>
+                            </div>
+                        </div>
+
+                        <div onclick="toggleLang()" class="flex items-center justify-between group cursor-pointer p-4 hover:bg-white/5 rounded-2xl transition-all border-t border-zinc-900/50 pt-6">
+                            <div>
+                                <p class="font-black text-lg" data-i18n="langTitle">Terminal Language</p>
+                                <p class="text-xs text-zinc-500" id="current-lang">Italiano (IT)</p>
+                            </div>
+                            <i data-lucide="languages" class="text-gold"></i>
+                        </div>
+
+                        <div onclick="toggleCurrency()" class="flex items-center justify-between group cursor-pointer p-4 hover:bg-white/5 rounded-2xl transition-all border-t border-zinc-900/50 pt-6">
+                            <div>
+                                <p class="font-black text-lg" data-i18n="currencyTitle">Display Currency</p>
+                                <p class="text-xs text-zinc-500" id="current-currency">Euro (€)</p>
+                            </div>
+                            <span class="text-gold font-black">€/$</span>
+                        </div>
+
+                        <div onclick="logout()" class="flex items-center justify-between group cursor-pointer p-4 hover:bg-terracotta/10 rounded-2xl transition-all border-t border-zinc-900/50 pt-6">
+                            <div>
+                                <p class="font-black text-lg text-terracotta" data-i18n="terminate">Terminate Session</p>
+                                <p class="text-xs text-zinc-500" data-i18n="logoutSub">Securely close terminal access</p>
+                            </div>
+                            <i data-lucide="log-out" class="text-terracotta"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+                <footer class="mt-20 py-10 border-t border-white/5 text-center">
+            <div class="max-w-7xl mx-auto px-6">
+                <p data-i18n="footerRights" class="text-[20px] text-zinc-500 uppercase tracking-[0.3em] mb-4">
+                    © 2025 DÓJA Institutional Art & Finance. All Rights Reserved.
+                </p>
+                <div class="flex justify-center gap-8">
+                    <button onclick="showPage('legal')" class="text-[9px] font-black text-zinc-400 hover:text-gold uppercase tracking-widest transition-colors">Legal Disclaimer</button>
+                    <button onclick="showPage('legal')" class="text-[9px] font-black text-zinc-400 hover:text-gold uppercase tracking-widest transition-colors">Privacy & Cookies</button>
+                </div>
+                <p data-i18n="footerDesc" class="mt-6 text-[14px] text-zinc-600 max-w-2xl mx-auto leading-relaxed uppercase tracking-tighter">
+                    DÓJA is a conceptual art-finance interface. This platform is for demonstrative purposes only and does not provide real financial services or investment advice.
+                </p>
+            </div>
+        </footer>
+
+        <section id="page-legal" class="page space-y-10 max-w-3xl mx-auto pb-20">
+            <div class="glass-card rounded-[3rem] p-10 space-y-8">
+                <h2 data-i18n="legalTitle" class="text-4xl font-black tracking-tighter italic">Legal Information</h2>
+                
+                <div class="space-y-6 text-sm text-zinc-400 leading-relaxed">
+                    <div>
+                        <h4 class="text-gold font-black uppercase text-xs tracking-widest mb-2">Disclaimer</h4>
+                        <p>Questa piattaforma è un prototipo di design e programmazione. I valori delle opere d'arte, le transazioni e i saldi visualizzati sono puramente simulati. DÓJA non opera come intermediario finanziario né come consulente d'investimento.</p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-gold font-black uppercase text-xs tracking-widest mb-2">Privacy Policy</h4>
+                        <p>Non raccogliamo dati personali degli utenti. L'accesso al terminale avviene tramite credenziali dimostrative. Nessun dato inserito nei campi di input viene salvato in database esterni o venduto a terze parti.</p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-gold font-black uppercase text-xs tracking-widest mb-2">Cookie Policy</h4>
+                        <p>Utilizziamo esclusivamente cookie tecnici essenziali per il funzionamento del terminale e per memorizzare le preferenze di interfaccia (Tema e Lingua) durante la sessione corrente.</p>
+                    </div>
+                </div>
+
+                <button onclick="showPage('dashboard')" data-i18n="returnBtn" class="bg-zinc-800 hover:bg-zinc-700 text-white font-black py-4 px-8 rounded-2xl text-[10px] uppercase tracking-widest transition-all">
+                    Return to Terminal
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        let currentLang = 'it';
+        let currentCurrency = 'EUR';
+
+    const translations = {
+        it: {
+            initSession: "Inizializza Sessione",
+            encryptedPoint: "Punto di Accesso Criptato",
+            navDashboard: "Dashboard",
+            navPortfolio: "Portfolio",
+            navSettings: "Impostazioni",
+            terminate: "Termina Sessione",
+            netWorth: "Patrimonio Netto Totale",
+            marketFeed: "Feed di Mercato",
+            newOrder: "Nuovo Ordine",
+            recentAcq: "Acquisizioni Recenti",
+            collection: "La Collezione",
+            assetsCount: "3 Asset Totali",
+            valuation: "Valutazione",
+            terminalConfig: "Config. Terminale",
+            themeTitle: "Tema Interfaccia",
+            themeSub: "Passa da Dark a Light",
+            langTitle: "Lingua Terminale",
+            currencyTitle: "Valuta Visualizzata",
+            logoutSub: "Chiudi l'accesso in sicurezza",
+            // Nuove traduzioni aggiunte:
+            cookieText: "Usiamo cookie tecnici per ottimizzare la tua esperienza nel terminale DÓJA. Proseguendo, accetti i nostri protocolli di riservatezza.",
+            cookieBtn: "Accetta Protocollo",
+            footerRights: "© 2025 DÓJA Institutional Art & Finance. Tutti i diritti riservati.",
+            footerDesc: "DÓJA è un'interfaccia concettuale art-finance. Questa piattaforma è solo a scopo dimostrativo e non fornisce servizi finanziari reali.",
+            legalTitle: "Informazioni Legali",
+            returnBtn: "Torna al Terminale"
+        },
+        en: {
+            initSession: "Initialize Session",
+            encryptedPoint: "Encrypted Access Point",
+            navDashboard: "Dashboard",
+            navPortfolio: "Portfolio",
+            navSettings: "Settings",
+            terminate: "Terminate Session",
+            netWorth: "Total Net Worth",
+            marketFeed: "Market Feed",
+            newOrder: "New Order",
+            recentAcq: "Recent Acquisitions",
+            collection: "The Collection",
+            assetsCount: "3 Assets Total",
+            valuation: "Valuation",
+            terminalConfig: "Terminal Config",
+            themeTitle: "Interface Theme",
+            themeSub: "Switch Light/Dark mode",
+            langTitle: "Terminal Language",
+            currencyTitle: "Display Currency",
+            logoutSub: "Securely close terminal access",
+            // Nuove traduzioni aggiunte:
+            cookieText: "We use technical cookies to optimize your experience in the DÓJA terminal. By proceeding, you accept our privacy protocols.",
+            cookieBtn: "Accept Protocol",
+            footerRights: "© 2025 DÓJA Institutional Art & Finance. All Rights Reserved.",
+            footerDesc: "DÓJA is a conceptual art-finance interface. This platform is for demonstrative purposes only and does not provide real financial services.",
+            legalTitle: "Legal Information",
+            returnBtn: "Return to Terminal"
+        }
+    };
+
+        // Sostituisci la tua funzione auth() con questa
+        function auth() {
+            const terminalId = document.querySelector('input[placeholder="ADMIN"]').value;
+            const securityKey = document.querySelector('input[placeholder="1234"]').value;
+            const btn = event.currentTarget;
+
+            // Definiamo delle credenziali di test
+            const VALID_ID = "ADMIN";
+            const VALID_KEY = "1234";
+
+            // Feedback visivo di caricamento
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = '<div class="w-5 h-5 border-2 border-obsidian border-t-transparent rounded-full animate-spin mx-auto"></div>';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                if (terminalId === VALID_ID && securityKey === VALID_KEY) {
+                    // Successo
+                    const login = document.getElementById('login-screen');
+                    login.style.opacity = '0';
+                    setTimeout(() => {
+                        login.style.display = 'none';
+                        document.getElementById('app-root').classList.remove('hidden');
+                        window.scrollTo(0,0);
+                        document.body.style.overflow = 'auto';
+                    }, 500);
+                } else {
+                    // Errore
+                    alert("Access Denied: Terminal ID or Security Key invalid.");
+                    btn.innerHTML = originalContent;
+                    btn.disabled = false;
+                }
+            }, 1200);
+        }
+
+        function logout() {
+            if(confirm("Confirm Session Termination?")) {
+                const app = document.getElementById('app-root');
+                const login = document.getElementById('login-screen');
+                app.classList.add('hidden');
+                login.style.display = 'flex';
+                setTimeout(() => { login.style.opacity = '1'; }, 50);
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            if (html.classList.contains('dark')) {
+                html.classList.replace('dark', 'light');
+                icon.setAttribute('data-lucide', 'sun');
+            } else {
+                html.classList.replace('light', 'dark');
+                icon.setAttribute('data-lucide', 'moon');
+            }
+            lucide.createIcons();
+        }
+
+        function toggleLang() {
+            currentLang = currentLang === 'it' ? 'en' : 'it';
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                el.innerText = translations[currentLang][el.getAttribute('data-i18n')];
+            });
+            document.getElementById('current-lang').innerText = currentLang === 'it' ? 'Italiano (IT)' : 'English (EN)';
+        }
+
+        function toggleCurrency() {
+            const exchangeRate = 1.08;
+            currentCurrency = currentCurrency === 'EUR' ? 'USD' : 'EUR';
+            
+            document.querySelectorAll('.currency-symbol').forEach(s => s.innerText = currentCurrency === 'EUR' ? '€' : '$');
+            document.querySelectorAll('[data-val]').forEach(v => {
+                const raw = parseFloat(v.getAttribute('data-val'));
+                const finalVal = currentCurrency === 'USD' ? (raw * exchangeRate) : raw;
+                v.innerText = finalVal.toLocaleString(currentLang === 'it' ? 'it-IT' : 'en-US');
+            });
+            document.getElementById('current-currency').innerText = currentCurrency === 'EUR' ? "Euro (€)" : "Dollar ($)";
+        }
+
+        function showPage(pageId) {
+            // Chiudi il menu mobile se aperto
+            document.getElementById('mobile-menu').classList.remove('open');
+            // RIPRISTINA LO SCROLL SUL BODY
+            document.body.style.overflow = 'auto';
+            
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page-' + pageId).classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const isOpen = menu.classList.toggle('open');
+            // Blocca lo scroll solo se il menu è aperto
+            document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+        }
+
+        // Gestione Cookie Banner
+        window.onload = () => {
+            if (!localStorage.getItem('cookiesAccepted')) {
+                document.getElementById('cookie-banner').classList.remove('hidden');
+            }
+        };
+
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-banner').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('cookie-banner').style.display = 'none';
+            }, 500);
+        }
+        // Aggiorna showPage per gestire il menu e la chiusura delle pagine precedenti
+        // (Assicurati che la tua funzione showPage esistente supporti il nuovo ID 'legal')
+
+    </script>
+</body>
+</html>
