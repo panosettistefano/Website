@@ -1,0 +1,498 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="it" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DÓJA | Art & Capital</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700;800&display=swap');
+        
+        :root {
+            --primary: 239, 155, 15; /* Il tuo oro DÓJA */
+            --background: 5, 6, 7;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: rgb(var(--background));
+            color: white;
+            scroll-behavior: smooth;
+        }
+
+        .text-primary { color: rgb(var(--primary)); }
+        .bg-primary { background-color: rgb(var(--primary)); }
+        .border-primary { border-color: rgb(var(--primary)); }
+
+        .glass-nav {
+            background: rgba(5, 6, 7, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(239, 155, 15, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(15, 17, 19, 0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(239, 155, 15, 0.3);
+            transform: translateY(-5px);
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fade-in 1s ease-out forwards;
+        }
+
+        /* Colori extra per le icone */
+        .text-jade { color: #2D5A4C; }
+        .bg-jade\/10 { background-color: rgba(45, 90, 76, 0.1); }
+        .text-terracotta { color: #A34B37; }
+        .bg-terracotta\/10 { background-color: rgba(163, 75, 55, 0.1); }
+        
+
+        
+        @media screen{
+            .cards {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-black">
+
+    <nav class="glass-nav fixed top-0 w-full z-50 px-6 py-5">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <span class="text-2xl font-black tracking-[0.3em] text-primary">DÓJA</span>
+            <div class="hidden md:flex items-center gap-10">
+                <a href="#features" class="text-[11px] font-black tracking-widest hover:text-primary transition-colors uppercase">Features</a>
+                <a href="#about" class="text-[11px] font-black tracking-widest hover:text-primary transition-colors uppercase">About</a>
+                <button class="bg-primary text-black font-black text-[11px] uppercase tracking-widest rounded-2xl px-6 py-3 hover:opacity-90 transition-all">
+                   <a href="https://panosettistefano.github.io/Website/"> Access Terminal </a>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="min-h-screen flex flex-col items-center justify-center px-6 pt-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-[rgba(239,155,15,0.05)] via-transparent to-transparent pointer-events-none"></div>
+        
+        <div class="text-center max-w-4xl pt-10 pb-40 pt-15 mx-auto relative z-10 animate-fade-in">
+            <div class="mb-8">
+                <span class="inline-block px-4 py-2 rounded-full bg-[rgba(239,155,15,0.1)] border border-[rgba(239,155,15,0.2)] text-primary text-[10px] font-black uppercase tracking-[0.3em]">
+                    Private Terminal
+                </span>
+            </div>
+            
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-black tracking-[0.4em] pt-10 text-primary drop-shadow-[0_0_40px_rgba(239,155,15,0.2)] mb-8">
+                DÓJA
+            </h1>
+            
+            <p class="text-[12px] md:text-sm font-medium text-zinc-500 uppercase tracking-[0.5em] mb-12 max-w-md mx-auto leading-relaxed">
+                The Intersection of Art & Capital
+            </p>
+            
+            <div class="w-16 h-[1px] bg-[rgba(239,155,15,0.3)] mx-auto mb-12"></div>
+            
+            <p class="text-lg md:text-xl text-zinc-300 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
+                Una piattaforma esclusiva per la gestione di investimenti nel mondo dell'arte. 
+                Monitora il tuo portfolio, analizza le performance e scopri nuove opportunità nel mercato artistico globale.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button class="bg-primary hover:opacity-90 text-black font-black px-10 py-5 rounded-3xl text-xs uppercase tracking-[0.2em] shadow-xl shadow-[rgba(239,155,15,0.2)] transition-all flex items-center">
+                    <a href="https://panosettistefano.github.io/Website/">Inizia Ora</a> <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                </button>
+                <button class="border border-zinc-800 hover:border-primary/50 font-black px-10 py-5 rounded-3xl text-xs uppercase tracking-[0.2em] bg-zinc-900/50 backdrop-blur-sm transition-all">
+                    Scopri di più
+                </button>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+            <i data-lucide="chevron-down" class="w-6 h-6 text-zinc-500"></i>
+        </div>
+    </section>
+
+    <section id="features" class=" px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <p class="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-4">Funzionalità</p>
+                <h2 class="text-4xl md:text-5xl font-black tracking-tight italic">Tutto ciò di cui hai bisogno</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card rounded-[3rem] p-10 group cursor-pointer">
+                    <div class="w-16 h-16 rounded-2xl bg-[rgba(239,155,15,0.1)] flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform">
+                        <i data-lucide="trending-up" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-black mb-4 italic">Portfolio Analytics</h3>
+                    <p class="text-zinc-500 text-sm leading-relaxed">Monitora in tempo reale le performance dei tuoi investimenti artistici con metriche avanzate.</p>
+                </div>
+
+                <div class="glass-card rounded-[3rem] p-10 group cursor-pointer">
+                    <div class="w-16 h-16 rounded-2xl bg-jade/10 flex items-center justify-center text-jade mb-8 group-hover:scale-110 transition-transform">
+                        <i data-lucide="shield" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-black mb-4 italic">Sicurezza Istituzionale</h3>
+                    <p class="text-zinc-500 text-sm leading-relaxed">Protocolli di sicurezza di livello bancario per proteggere i tuoi asset.</p>
+                </div>
+
+                <div class="glass-card rounded-[3rem] p-10 group cursor-pointer">
+                    <div class="w-16 h-16 rounded-2xl bg-terracotta/10 flex items-center justify-center text-terracotta mb-8 group-hover:scale-110 transition-transform">
+                        <i data-lucide="gem" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-black mb-4 italic">Accesso Esclusivo</h3>
+                    <p class="text-zinc-500 text-sm leading-relaxed">Opportunità di acquisizione riservate e accesso prioritario alle aste prestigiose.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class=" cards pl-40 pr-40">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end px-2 gap-4">
+                    <h2 class="text-5xl pb-10 pt-12 font-black tracking-tighter italic" data-i18n="collection">The Collection</h2>
+                    <p class="text-gold font-black text-[11px] tracking-widest uppercase" data-i18n="assetsCount">3 Assets Total</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="glass-card rounded-[3rem] overflow-hidden group">
+                        <div class="aspect-[4/5] img-slot relative">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1200px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        </div>
+                        <div class="p-8">
+                            <span class="text-gold text-[9px] font-black tracking-[0.3em] uppercase">Vincent Van Gogh</span>
+                            <h4 class="font-black text-2xl mt-1 italic tracking-tight">La notte stellata</h4>
+                            <div class="mt-8 flex justify-between items-end">
+                                <div><p class="text-[10px] text-zinc-500 uppercase font-black" data-i18n="valuation">Valuation</p>
+                                <p class="text-xl font-black"><span class="currency-symbol">€</span> <span data-val="45000">45.000</span></p></div>
+                                <i data-lucide="shield-check" class="text-jade w-6 h-6"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-[3rem] overflow-hidden group">
+                        <div class="aspect-[4/5] img-slot relative">
+                            <img src="https://wahooart.com/media/artworks/images/full/24/47/2447e18405b84db99fcf4c89b65e0555.Jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        </div>
+                        <div class="p-8">
+                            <span class="text-gold text-[9px] font-black tracking-[0.3em] uppercase">Salvador Dali'</span>
+                            <h4 class="font-black text-2xl mt-1 italic tracking-tight">La tentazione di Sant'Antonio</h4>
+                            <div class="mt-8 flex justify-between items-end">
+                                <div><p class="text-[10px] text-zinc-500 uppercase font-black" data-i18n="valuation">Valuation</p>
+                                <p class="text-xl font-black"><span class="currency-symbol">€</span> <span data-val="128000">128.000</span></p></div>
+                                <i data-lucide="shield-check" class="text-jade w-6 h-6"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-[3rem] overflow-hidden group">
+                        <div class="aspect-[4/5] img-slot relative">
+                            <img src="https://gallery.artsupp.com/partners_artworks_pictures/full/3761.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        </div>
+                        <div class="p-8">
+                            <span class="text-gold text-[9px] font-black tracking-[0.3em] uppercase">Antonio Ligabue</span>
+                            <h4 class="font-black text-2xl mt-1 italic tracking-tight">Tigre</h4>
+                            <div class="mt-8 flex justify-between items-end">
+                                <div><p class="text-[10px] text-zinc-500 uppercase font-black" data-i18n="valuation">Valuation</p>
+                                <p class="text-xl font-black"><span class="currency-symbol">€</span> <span data-val="890000">890.000</span></p></div>
+                                <i data-lucide="shield-check" class="text-jade w-6 h-6"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </section>
+
+    <section class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="glass-card rounded-[3rem] p-12 md:p-16">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+                    <div>
+                        <p class="text-5xl md:text-6xl font-black text-primary italic">€2.4M+</p>
+                        <p class="text-[11px] font-black text-zinc-500 uppercase tracking-[0.3em] mt-4">Asset Gestiti</p>
+                    </div>
+                    <div>
+                        <p class="text-5xl md:text-6xl font-black text-primary italic">+12.4%</p>
+                        <p class="text-[11px] font-black text-zinc-500 uppercase tracking-[0.3em] mt-4">Rendimento Annuo</p>
+                    </div>
+                    <div>
+                        <p class="text-5xl md:text-6xl font-black text-primary italic">150+</p>
+                        <p class="text-[11px] font-black text-zinc-500 uppercase tracking-[0.3em] mt-4">Opere nel Portfolio</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 px-6 border-t border-zinc-900">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <span class="text-xl font-black tracking-[0.3em] text-primary">DÓJA</span>
+            <p class="text-[10px] font-medium text-zinc-500 uppercase tracking-[0.3em]">
+                © 2024 DÓJA Institutional Art & Finance. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Inizializza le icone Lucide
+        lucide.createIcons();
+    </script>
+</body>
+=======
+<!DOCTYPE html>
+<html lang="it" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DÓJA | Art & Capital</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700;800&display=swap');
+        
+        :root {
+            --primary: 239, 155, 15; /* Il tuo oro DÓJA */
+            --background: 5, 6, 7;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: rgb(var(--background));
+            color: white;
+            scroll-behavior: smooth;
+        }
+
+        .text-primary { color: rgb(var(--primary)); }
+        .bg-primary { background-color: rgb(var(--primary)); }
+        .border-primary { border-color: rgb(var(--primary)); }
+
+        .glass-nav {
+            background: rgba(5, 6, 7, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(239, 155, 15, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(15, 17, 19, 0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(239, 155, 15, 0.3);
+            transform: translateY(-5px);
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fade-in 1s ease-out forwards;
+        }
+
+        /* Colori extra per le icone */
+        .text-jade { color: #2D5A4C; }
+        .bg-jade\/10 { background-color: rgba(45, 90, 76, 0.1); }
+        .text-terracotta { color: #A34B37; }
+        .bg-terracotta\/10 { background-color: rgba(163, 75, 55, 0.1); }
+        
+
+        
+        @media screen{
+            .cards {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-black">
+
+    <nav class="glass-nav fixed top-0 w-full z-50 px-6 py-5">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <span class="text-2xl font-black tracking-[0.3em] text-primary">DÓJA</span>
+            <div class="hidden md:flex items-center gap-10">
+                <a href="#features" class="text-[11px] font-black tracking-widest hover:text-primary transition-colors uppercase">Features</a>
+                <a href="#about" class="text-[11px] font-black tracking-widest hover:text-primary transition-colors uppercase">About</a>
+                <button class="bg-primary text-black font-black text-[11px] uppercase tracking-widest rounded-2xl px-6 py-3 hover:opacity-90 transition-all">
+                   <a href="https://panosettistefano.github.io/Website/"> Access Terminal </a>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="min-h-screen flex flex-col items-center justify-center px-6 pt-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-[rgba(239,155,15,0.05)] via-transparent to-transparent pointer-events-none"></div>
+        
+        <div class="text-center max-w-4xl pt-10 pb-40 pt-15 mx-auto relative z-10 animate-fade-in">
+            <div class="mb-8">
+                <span class="inline-block px-4 py-2 rounded-full bg-[rgba(239,155,15,0.1)] border border-[rgba(239,155,15,0.2)] text-primary text-[10px] font-black uppercase tracking-[0.3em]">
+                    Private Terminal
+                </span>
+            </div>
+            
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-black tracking-[0.4em] pt-10 text-primary drop-shadow-[0_0_40px_rgba(239,155,15,0.2)] mb-8">
+                DÓJA
+            </h1>
+            
+            <p class="text-[12px] md:text-sm font-medium text-zinc-500 uppercase tracking-[0.5em] mb-12 max-w-md mx-auto leading-relaxed">
+                The Intersection of Art & Capital
+            </p>
+            
+            <div class="w-16 h-[1px] bg-[rgba(239,155,15,0.3)] mx-auto mb-12"></div>
+            
+            <p class="text-lg md:text-xl text-zinc-300 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
+                Una piattaforma esclusiva per la gestione di investimenti nel mondo dell'arte. 
+                Monitora il tuo portfolio, analizza le performance e scopri nuove opportunità nel mercato artistico globale.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button class="bg-primary hover:opacity-90 text-black font-black px-10 py-5 rounded-3xl text-xs uppercase tracking-[0.2em] shadow-xl shadow-[rgba(239,155,15,0.2)] transition-all flex items-center">
+                    <a href="https://panosettistefano.github.io/Website/">Inizia Ora</a> <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                </button>
+                <button class="border border-zinc-800 hover:border-primary/50 font-black px-10 py-5 rounded-3xl text-xs uppercase tracking-[0.2em] bg-zinc-900/50 backdrop-blur-sm transition-all">
+                    Scopri di più
+                </button>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+            <i data-lucide="chevron-down" class="w-6 h-6 text-zinc-500"></i>
+        </div>
+    </section>
+
+    <section id="features" class=" px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <p class="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-4">Funzionalità</p>
+                <h2 class="text-4xl md:text-5xl font-black tracking-tight italic">Tutto ciò di cui hai bisogno</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card rounded-[3rem] p-10 group cursor-pointer">
+                    <div class="w-16 h-16 rounded-2xl bg-[rgba(239,155,15,0.1)] flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform">
+                        <i data-lucide="trending-up" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-black mb-4 italic">Portfolio Analytics</h3>
+                    <p class="text-zinc-500 text-sm leading-relaxed">Monitora in tempo reale le performance dei tuoi investimenti artistici con metriche avanzate.</p>
+                </div>
+
+                <div class="glass-card rounded-[3rem] p-10 group cursor-pointer">
+                    <div class="w-16 h-16 rounded-2xl bg-jade/10 flex items-center justify-center text-jade mb-8 group-hover:scale-110 transition-transform">
+                        <i data-lucide="shield" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-black mb-4 italic">Sicurezza Istituzionale</h3>
+                    <p class="text-zinc-500 text-sm leading-relaxed">Protocolli di sicurezza di livello bancario per proteggere i tuoi asset.</p>
+                </div>
+
+                <div class="glass-card rounded-[3rem] p-10 group cursor-pointer">
+                    <div class="w-16 h-16 rounded-2xl bg-terracotta/10 flex items-center justify-center text-terracotta mb-8 group-hover:scale-110 transition-transform">
+                        <i data-lucide="gem" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-black mb-4 italic">Accesso Esclusivo</h3>
+                    <p class="text-zinc-500 text-sm leading-relaxed">Opportunità di acquisizione riservate e accesso prioritario alle aste prestigiose.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class=" cards pl-40 pr-40">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end px-2 gap-4">
+                    <h2 class="text-5xl pb-10 pt-12 font-black tracking-tighter italic" data-i18n="collection">The Collection</h2>
+                    <p class="text-gold font-black text-[11px] tracking-widest uppercase" data-i18n="assetsCount">3 Assets Total</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="glass-card rounded-[3rem] overflow-hidden group">
+                        <div class="aspect-[4/5] img-slot relative">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1200px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        </div>
+                        <div class="p-8">
+                            <span class="text-gold text-[9px] font-black tracking-[0.3em] uppercase">Vincent Van Gogh</span>
+                            <h4 class="font-black text-2xl mt-1 italic tracking-tight">La notte stellata</h4>
+                            <div class="mt-8 flex justify-between items-end">
+                                <div><p class="text-[10px] text-zinc-500 uppercase font-black" data-i18n="valuation">Valuation</p>
+                                <p class="text-xl font-black"><span class="currency-symbol">€</span> <span data-val="45000">45.000</span></p></div>
+                                <i data-lucide="shield-check" class="text-jade w-6 h-6"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-[3rem] overflow-hidden group">
+                        <div class="aspect-[4/5] img-slot relative">
+                            <img src="https://wahooart.com/media/artworks/images/full/24/47/2447e18405b84db99fcf4c89b65e0555.Jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        </div>
+                        <div class="p-8">
+                            <span class="text-gold text-[9px] font-black tracking-[0.3em] uppercase">Salvador Dali'</span>
+                            <h4 class="font-black text-2xl mt-1 italic tracking-tight">La tentazione di Sant'Antonio</h4>
+                            <div class="mt-8 flex justify-between items-end">
+                                <div><p class="text-[10px] text-zinc-500 uppercase font-black" data-i18n="valuation">Valuation</p>
+                                <p class="text-xl font-black"><span class="currency-symbol">€</span> <span data-val="128000">128.000</span></p></div>
+                                <i data-lucide="shield-check" class="text-jade w-6 h-6"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-[3rem] overflow-hidden group">
+                        <div class="aspect-[4/5] img-slot relative">
+                            <img src="https://gallery.artsupp.com/partners_artworks_pictures/full/3761.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        </div>
+                        <div class="p-8">
+                            <span class="text-gold text-[9px] font-black tracking-[0.3em] uppercase">Antonio Ligabue</span>
+                            <h4 class="font-black text-2xl mt-1 italic tracking-tight">Tigre</h4>
+                            <div class="mt-8 flex justify-between items-end">
+                                <div><p class="text-[10px] text-zinc-500 uppercase font-black" data-i18n="valuation">Valuation</p>
+                                <p class="text-xl font-black"><span class="currency-symbol">€</span> <span data-val="890000">890.000</span></p></div>
+                                <i data-lucide="shield-check" class="text-jade w-6 h-6"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </section>
+
+    <section class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="glass-card rounded-[3rem] p-12 md:p-16">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+                    <div>
+                        <p class="text-5xl md:text-6xl font-black text-primary italic">€2.4M+</p>
+                        <p class="text-[11px] font-black text-zinc-500 uppercase tracking-[0.3em] mt-4">Asset Gestiti</p>
+                    </div>
+                    <div>
+                        <p class="text-5xl md:text-6xl font-black text-primary italic">+12.4%</p>
+                        <p class="text-[11px] font-black text-zinc-500 uppercase tracking-[0.3em] mt-4">Rendimento Annuo</p>
+                    </div>
+                    <div>
+                        <p class="text-5xl md:text-6xl font-black text-primary italic">150+</p>
+                        <p class="text-[11px] font-black text-zinc-500 uppercase tracking-[0.3em] mt-4">Opere nel Portfolio</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 px-6 border-t border-zinc-900">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <span class="text-xl font-black tracking-[0.3em] text-primary">DÓJA</span>
+            <p class="text-[10px] font-medium text-zinc-500 uppercase tracking-[0.3em]">
+                © 2024 DÓJA Institutional Art & Finance. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Inizializza le icone Lucide
+        lucide.createIcons();
+    </script>
+</body>
+>>>>>>> ed4f2dcccd9c37fea6b72c83df4f0cf125495ef3
+</html>
